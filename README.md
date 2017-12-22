@@ -1,6 +1,6 @@
 # YZAuthID
 
-[![Cocoapods](https://img.shields.io/badge/pod-1.0.0-brightgreen.svg)](https://cocoapods.org/?q= YZAuthID)
+[![Cocoapods](https://img.shields.io/badge/pod-1.0.0-brightgreen.svg)](https://cocoapods.org/?q=YZAuthID)
 [![Support](https://img.shields.io/badge/support-iOS10+-blue.svg)](https://www.apple.com/nl/ios)
 [![Downloads](https://img.shields.io/badge/downloads-468KB-yellow.svg)](https://github.com/micyo202/YZAuthID/archive/master.zip)
 [![License MIT](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://github.com/micyo202/YZAuthID/blob/master/LICENSE)
@@ -11,10 +11,10 @@
 
 ###### 实例效果图：
 
-<img src="https://github.com/micyo202/YZBottomSelectView/raw/master/20171222170409.png" alt="效果预览" title="示例界面">
+<img src="https://github.com/micyo202/YZAuthID/raw/master/20171222170409.png" alt="效果预览" title="示例界面">
 
-<img src="https://github.com/micyo202/YZBottomSelectView/raw/master/20171222170419.png" alt="效果预览" title="开始认证">
+<img src="https://github.com/micyo202/YZAuthID/raw/master/20171222170419.png" alt="效果预览" title="开始认证">
 
-<img src="https://github.com/micyo202/YZBottomSelectView/raw/master/20171222170429.png" alt="效果预览" title="认证失败">
+<img src="https://github.com/micyo202/YZAuthID/raw/master/20171222170429.png" alt="效果预览" title="认证失败">
 
 ###### 详细使用方法及介绍请参考[简书](https://www.jianshu.com/p/da752036b2f4)
