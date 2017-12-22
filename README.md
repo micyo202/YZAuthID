@@ -9,12 +9,12 @@
 
 仅需一个回调方法即可轻松实现TouchID（指纹）/ FaceID（面容）验证功能，代码简洁易懂。
 
-###### 实例效果图：
+#### 详细使用方法及介绍请参考[简书](https://www.jianshu.com/p/da752036b2f4)
+
+#### 实例效果图：
 
 <img src="https://github.com/micyo202/YZAuthID/raw/master/20171222170409.png" alt="效果预览" title="示例界面">
 
 <img src="https://github.com/micyo202/YZAuthID/raw/master/20171222170419.png" alt="效果预览" title="开始认证">
 
 <img src="https://github.com/micyo202/YZAuthID/raw/master/20171222170429.png" alt="效果预览" title="认证失败">
-
-###### 详细使用方法及介绍请参考[简书](https://www.jianshu.com/p/da752036b2f4)
