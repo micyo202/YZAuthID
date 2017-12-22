@@ -48,16 +48,18 @@
 #pragma mark - 验证TouchID/FaceID
 - (void)authVerification {
     
-    YZAuthID *touchID = [[YZAuthID alloc] init];
+    YZAuthID *authID = [[YZAuthID alloc] init];
     
-    [touchID yz_showAuthIDWithDescribe:nil BlockState:^(YZAuthIDState state, NSError *error) {
+    [authID yz_showAuthIDWithDescribe:nil BlockState:^(YZAuthIDState state, NSError *error) {
         
         if (state == YZAuthIDStateNotSupport) { // 不支持TouchID/FaceID
-            NSLog(@"对不起，当前设备不支持指纹");
-        } else if(state == YZAuthIDStateTouchIDLockout) {    // 多次指纹错误被锁定
-            NSLog(@"多次错误，指纹已被锁定，请到手机解锁界面输入密码！");
+            NSLog(@"对不起，当前设备不支持指纹/面部ID");
+        } else if(state == YZAuthIDStateFail) { // 认证失败
+            NSLog(@"指纹/面部ID不正确，认证失败");
+        } else if(state == YZAuthIDStateTouchIDLockout) {   // 多次错误，已被锁定
+            NSLog(@"多次错误，指纹/面部ID已被锁定，请到手机解锁界面输入密码");
         } else if (state == YZAuthIDStateSuccess) { // TouchID/FaceID验证成功
-            [self dismissViewControllerAnimated:YES completion:nil];
+            NSLog(@"认证成功！");
         }
         
     }];
