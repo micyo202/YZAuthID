@@ -13,8 +13,14 @@
 
 #### 实例效果图：
 
-<img src="https://github.com/micyo202/YZAuthID/raw/master/20171222170409.png" alt="效果预览" title="示例界面">
+<img src="https://github.com/micyo202/YZAuthID/raw/master/auth_finger_1.png" alt="指纹1" title="指纹界面">
 
-<img src="https://github.com/micyo202/YZAuthID/raw/master/20171222170419.png" alt="效果预览" title="开始认证">
+<img src="https://github.com/micyo202/YZAuthID/raw/master/auth_finger_2.png" alt="指纹2" title="开始认证">
 
-<img src="https://github.com/micyo202/YZAuthID/raw/master/20171222170429.png" alt="效果预览" title="认证失败">
+<img src="https://github.com/micyo202/YZAuthID/raw/master/auth_finger_3.png" alt="指纹3" title="认证失败">
+
+<img src="https://github.com/micyo202/YZAuthID/raw/master/auth_face_1.png" alt="面容1" title="面容界面">
+
+<img src="https://github.com/micyo202/YZAuthID/raw/master/auth_face_2.png" alt="面容2" title="开始认证">
+
+<img src="https://github.com/micyo202/YZAuthID/raw/master/auth_face_3.png" alt="面容3" title="认证失败">
