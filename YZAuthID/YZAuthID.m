@@ -1,15 +1,17 @@
 /************************************************************
  Class    : YZAuthID.m
- Describe : TouchID/FaceID认证方法
- Company  : Prient
+ Describe : TouchID/FaceID 认证方法
+ Company  : Micyo
  Author   : Yanzheng
- Date     : 2017-12-22
- Version  : 1.0
- Declare  : Copyright © 2017 Yanzheng. All rights reserved.
+ Date     : 2018-07-26
+ Version  : 2.0
+ Declare  : Copyright © 2018 Yanzheng. All rights reserved.
  ************************************************************/
 
 #import "YZAuthID.h"
 #import <UIKit/UIKit.h>
+
+#define iPhoneX (UIScreen.mainScreen.bounds.size.width == 375.f && UIScreen.mainScreen.bounds.size.height == 812.f)
 
 @implementation YZAuthID
 
@@ -22,12 +24,20 @@
     return instance;
 }
 
-- (void)yz_showAuthIDWithDescribe:(NSString *)desc BlockState:(StateBlock)block{
+- (void)yz_showAuthIDWithDescribe:(NSString *)describe block:(YZAuthIDStateBlock)block {
+    if(!describe) {
+        if(iPhoneX){
+            describe = @"验证已有面容";
+        }else{
+            describe = @"通过Home键验证已有指纹";
+        }
+    }
+    
     if (NSFoundationVersionNumber < NSFoundationVersionNumber_iOS_8_0) {
         
         dispatch_async(dispatch_get_main_queue(), ^{
             NSLog(@"系统版本不支持TouchID/FaceID (必须高于iOS 8.0才能使用)");
-            block(YZAuthIDStateVersionNotSupport,nil);
+            block(YZAuthIDStateVersionNotSupport, nil);
         });
         
         return;
@@ -43,13 +53,12 @@
     // LAPolicyDeviceOwnerAuthenticationWithBiometrics: 用TouchID/FaceID验证
     // LAPolicyDeviceOwnerAuthentication: 用TouchID/FaceID或密码验证, 默认是错误两次或锁定后, 弹出输入密码界面（本案例使用）
     if ([context canEvaluatePolicy:LAPolicyDeviceOwnerAuthentication error:&error]) {
-        
-        [context evaluatePolicy:LAPolicyDeviceOwnerAuthentication localizedReason:desc == nil ? @"通过Home键验证已有指纹" : desc reply:^(BOOL success, NSError * _Nullable error) {
+        [context evaluatePolicy:LAPolicyDeviceOwnerAuthentication localizedReason:describe reply:^(BOOL success, NSError * _Nullable error) {
             
             if (success) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     NSLog(@"TouchID/FaceID 验证成功");
-                    block(YZAuthIDStateSuccess,error);
+                    block(YZAuthIDStateSuccess, error);
                 });
             }else if(error){
                 
@@ -58,73 +67,73 @@
                         case LAErrorAuthenticationFailed:{
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 NSLog(@"TouchID/FaceID 验证失败");
-                                block(YZAuthIDStateFail,error);
+                                block(YZAuthIDStateFail, error);
                             });
                             break;
                         }
                         case LAErrorUserCancel:{
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 NSLog(@"TouchID/FaceID 被用户手动取消");
-                                block(YZAuthIDStateUserCancel,error);
+                                block(YZAuthIDStateUserCancel, error);
                             });
                         }
                             break;
                         case LAErrorUserFallback:{
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 NSLog(@"用户不使用TouchID/FaceID,选择手动输入密码");
-                                block(YZAuthIDStateInputPassword,error);
+                                block(YZAuthIDStateInputPassword, error);
                             });
                         }
                             break;
                         case LAErrorSystemCancel:{
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 NSLog(@"TouchID/FaceID 被系统取消 (如遇到来电,锁屏,按了Home键等)");
-                                block(YZAuthIDStateSystemCancel,error);
+                                block(YZAuthIDStateSystemCancel, error);
                             });
                         }
                             break;
                         case LAErrorPasscodeNotSet:{
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 NSLog(@"TouchID/FaceID 无法启动,因为用户没有设置密码");
-                                block(YZAuthIDStatePasswordNotSet,error);
+                                block(YZAuthIDStatePasswordNotSet, error);
                             });
                         }
                             break;
                             //case LAErrorTouchIDNotEnrolled:{
                         case LAErrorBiometryNotEnrolled:{
                             dispatch_async(dispatch_get_main_queue(), ^{
-                                NSLog(@"TouchID/FaceID 无法启动,因为用户没有设置TouchID");
-                                block(YZAuthIDStateTouchIDNotSet,error);
+                                NSLog(@"TouchID/FaceID 无法启动,因为用户没有设置TouchID/FaceID");
+                                block(YZAuthIDStateTouchIDNotSet, error);
                             });
                         }
                             break;
                             //case LAErrorTouchIDNotAvailable:{
                         case LAErrorBiometryNotAvailable:{
                             dispatch_async(dispatch_get_main_queue(), ^{
-                                NSLog(@"TouchID 无效");
-                                block(YZAuthIDStateTouchIDNotAvailable,error);
+                                NSLog(@"TouchID/FaceID 无效");
+                                block(YZAuthIDStateTouchIDNotAvailable, error);
                             });
                         }
                             break;
                             //case LAErrorTouchIDLockout:{
                         case LAErrorBiometryLockout:{
                             dispatch_async(dispatch_get_main_queue(), ^{
-                                NSLog(@"TouchID 被锁定(连续多次验证TouchID/FaceID失败,系统需要用户手动输入密码)");
-                                block(YZAuthIDStateTouchIDLockout,error);
+                                NSLog(@"TouchID/FaceID 被锁定(连续多次验证TouchID/FaceID失败,系统需要用户手动输入密码)");
+                                block(YZAuthIDStateTouchIDLockout, error);
                             });
                         }
                             break;
                         case LAErrorAppCancel:{
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 NSLog(@"当前软件被挂起并取消了授权 (如App进入了后台等)");
-                                block(YZAuthIDStateAppCancel,error);
+                                block(YZAuthIDStateAppCancel, error);
                             });
                         }
                             break;
                         case LAErrorInvalidContext:{
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 NSLog(@"当前软件被挂起并取消了授权 (LAContext对象无效)");
-                                block(YZAuthIDStateInvalidContext,error);
+                                block(YZAuthIDStateInvalidContext, error);
                             });
                         }
                             break;
@@ -137,42 +146,42 @@
                         case LAErrorAuthenticationFailed:{
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 NSLog(@"TouchID 验证失败");
-                                block(YZAuthIDStateFail,error);
+                                block(YZAuthIDStateFail, error);
                             });
                             break;
                         }
                         case LAErrorUserCancel:{
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 NSLog(@"TouchID 被用户手动取消");
-                                block(YZAuthIDStateUserCancel,error);
+                                block(YZAuthIDStateUserCancel, error);
                             });
                         }
                             break;
                         case LAErrorUserFallback:{
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 NSLog(@"用户不使用TouchID,选择手动输入密码");
-                                block(YZAuthIDStateInputPassword,error);
+                                block(YZAuthIDStateInputPassword, error);
                             });
                         }
                             break;
                         case LAErrorSystemCancel:{
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 NSLog(@"TouchID 被系统取消 (如遇到来电,锁屏,按了Home键等)");
-                                block(YZAuthIDStateSystemCancel,error);
+                                block(YZAuthIDStateSystemCancel, error);
                             });
                         }
                             break;
                         case LAErrorPasscodeNotSet:{
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 NSLog(@"TouchID 无法启动,因为用户没有设置密码");
-                                block(YZAuthIDStatePasswordNotSet,error);
+                                block(YZAuthIDStatePasswordNotSet, error);
                             });
                         }
                             break;
                         case LAErrorTouchIDNotEnrolled:{
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 NSLog(@"TouchID 无法启动,因为用户没有设置TouchID");
-                                block(YZAuthIDStateTouchIDNotSet,error);
+                                block(YZAuthIDStateTouchIDNotSet, error);
                             });
                         }
                             break;
@@ -180,28 +189,28 @@
                         case LAErrorTouchIDNotAvailable:{
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 NSLog(@"TouchID 无效");
-                                block(YZAuthIDStateTouchIDNotAvailable,error);
+                                block(YZAuthIDStateTouchIDNotAvailable, error);
                             });
                         }
                             break;
                         case LAErrorTouchIDLockout:{
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 NSLog(@"TouchID 被锁定(连续多次验证TouchID失败,系统需要用户手动输入密码)");
-                                block(YZAuthIDStateTouchIDLockout,error);
+                                block(YZAuthIDStateTouchIDLockout, error);
                             });
                         }
                             break;
                         case LAErrorAppCancel:{
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 NSLog(@"当前软件被挂起并取消了授权 (如App进入了后台等)");
-                                block(YZAuthIDStateAppCancel,error);
+                                block(YZAuthIDStateAppCancel, error);
                             });
                         }
                             break;
                         case LAErrorInvalidContext:{
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 NSLog(@"当前软件被挂起并取消了授权 (LAContext对象无效)");
-                                block(YZAuthIDStateInvalidContext,error);
+                                block(YZAuthIDStateInvalidContext, error);
                             });
                         }
                             break;
@@ -217,7 +226,7 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             NSLog(@"当前设备不支持TouchID/FaceID");
-            block(YZAuthIDStateNotSupport,error);
+            block(YZAuthIDStateNotSupport, error);
         });
         
     }

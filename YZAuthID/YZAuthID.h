@@ -1,17 +1,17 @@
 /************************************************************
- Class    : YZAuthID.m
- Describe : TouchID/FaceID认证方法
- Company  : Prient
+ Class    : YZAuthID.h
+ Describe : TouchID/FaceID 认证方法
+ Company  : Micyo
  Author   : Yanzheng
- Date     : 2017-12-22
- Version  : 1.0
- Declare  : Copyright © 2017 Yanzheng. All rights reserved.
+ Date     : 2018-07-26
+ Version  : 2.0
+ Declare  : Copyright © 2018 Yanzheng. All rights reserved.
  ************************************************************/
 
 #import <LocalAuthentication/LocalAuthentication.h>
 
 /**
- *  TouchID 状态
+ *  TouchID/FaceID 状态
  */
 typedef NS_ENUM(NSUInteger, YZAuthIDState){
     
@@ -45,7 +45,7 @@ typedef NS_ENUM(NSUInteger, YZAuthIDState){
      */
     YZAuthIDStatePasswordNotSet = 6,
     /**
-     *  TouchID/FaceID 无法启动,因为用户没有设置TouchID
+     *  TouchID/FaceID 无法启动,因为用户没有设置TouchID/FaceID
      */
     YZAuthIDStateTouchIDNotSet = 7,
     /**
@@ -71,19 +71,15 @@ typedef NS_ENUM(NSUInteger, YZAuthIDState){
 };
 
 
-
 @interface YZAuthID : LAContext
 
-typedef void (^StateBlock)(YZAuthIDState state,NSError *error);
-
+typedef void (^YZAuthIDStateBlock)(YZAuthIDState state, NSError *error);
 
 /**
- 启动TouchID/FaceID进行验证
- 
- @param desc TouchID/FaceID显示的描述
- @param block 回调状态的block
+ * 启动TouchID/FaceID进行验证
+ * @param describe TouchID/FaceID显示的描述
+ * @param block 回调状态的block
  */
-
-- (void)yz_showAuthIDWithDescribe:(NSString *)desc BlockState:(StateBlock)block;
+- (void)yz_showAuthIDWithDescribe:(NSString *)describe block:(YZAuthIDStateBlock)block;
 
 @end
