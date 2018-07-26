@@ -1,10 +1,12 @@
-//
-//  ViewController.h
-//  YZAuthID
-//
-//  Created by Apple on 2017/12/22.
-//  Copyright © 2017年 Yanzheng. All rights reserved.
-//
+/************************************************************
+ Class    : ViewController.h
+ Describe : YZAuthID 认证方法示例代码
+ Company  : Micyo
+ Author   : Yanzheng
+ Date     : 2018-07-26
+ Version  : 2.0
+ Declare  : Copyright © 2018 Yanzheng. All rights reserved.
+ ************************************************************/
 
 #import <UIKit/UIKit.h>
 
