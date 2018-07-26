@@ -1,6 +1,6 @@
 # YZAuthID
 
-[![Cocoapods](https://img.shields.io/badge/pod-1.0.0-brightgreen.svg)](https://cocoapods.org/?q=YZAuthID)
+[![Cocoapods](https://img.shields.io/badge/pod-2.0.0-brightgreen.svg)](https://cocoapods.org/?q=YZAuthID)
 [![Support](https://img.shields.io/badge/support-iOS10+-blue.svg)](https://www.apple.com/nl/ios)
 [![Downloads](https://img.shields.io/badge/downloads-468KB-yellow.svg)](https://github.com/micyo202/YZAuthID/archive/master.zip)
 [![License MIT](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://github.com/micyo202/YZAuthID/blob/master/LICENSE)
