@@ -11,7 +11,7 @@
 #import "YZAuthID.h"
 #import <UIKit/UIKit.h>
 
-#define iPhoneX (UIScreen.mainScreen.bounds.size.width == 375.f && UIScreen.mainScreen.bounds.size.height == 812.f)
+#define iPhoneX (UIScreen.mainScreen.bounds.size.width >= 375.f && UIScreen.mainScreen.bounds.size.height >= 812.f)
 
 @implementation YZAuthID
 
