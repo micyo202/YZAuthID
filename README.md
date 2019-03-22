@@ -1,8 +1,9 @@
 # YZAuthID
 
-[![Cocoapods](https://img.shields.io/badge/pod-2.0.0-brightgreen.svg)](https://cocoapods.org/?q=YZAuthID)
-[![Support](https://img.shields.io/badge/support-iOS10+-blue.svg)](https://www.apple.com/nl/ios)
-[![Downloads](https://img.shields.io/badge/downloads-468KB-yellow.svg)](https://github.com/micyo202/YZAuthID/archive/master.zip)
+[![Build Status](https://travis-ci.org/micyo202/YZAuthID.svg)](https://travis-ci.org/micyo202/YZAuthID)
+[![Version](https://img.shields.io/badge/version-2.0.0-yellow.svg)](https://github.com/micyo202/YZAuthID)
+[![Cocoapods](https://img.shields.io/badge/pod-v1.5.3-green.svg)](https://cocoapods.org/?q=YZAuthID)
+[![Platform](https://img.shields.io/badge/platform-ios-red.svg)](https://github.com/micyo202/YZAuthID)
 [![License MIT](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://github.com/micyo202/YZAuthID/blob/master/LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/micyo202/YZAuthID.svg?style=social&label=Stars)](https://github.com/micyo202/YZAuthID)
 [![GitHub forks](https://img.shields.io/github/forks/micyo202/YZAuthID.svg?style=social&label=Fork)](https://github.com/micyo202/YZAuthID)
