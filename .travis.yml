@@ -1,6 +1,6 @@
 language: objective-c
 osx_image: xcode10
-xcode_project: YZAuthID/YZAuthID.xcodeproj
+xcode_project: YZAuthID.xcodeproj
 xcode_scheme: YZAuthID
 
 before_install:
