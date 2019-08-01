@@ -8,7 +8,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/micyo202/YZAuthID.svg?style=social&label=Stars)](https://github.com/micyo202/YZAuthID)
 [![GitHub forks](https://img.shields.io/github/forks/micyo202/YZAuthID.svg?style=social&label=Fork)](https://github.com/micyo202/YZAuthID)
 
-仅需一个回调方法即可轻松实现TouchID（指纹）/ FaceID（面容）验证功能，代码简洁易懂。
+仅需一个回调方法即可轻松实现iOS TouchID（指纹）/ FaceID（面容）验证功能，代码简洁易懂。
 
 #### 详细使用方法及介绍请参考[简书](https://www.jianshu.com/p/da752036b2f4)
 
