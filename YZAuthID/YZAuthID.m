@@ -178,7 +178,7 @@
                             });
                         }
                             break;
-                        case LAErrorTouchIDNotEnrolled:{
+                        case LAErrorBiometryNotEnrolled:{
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 NSLog(@"TouchID 无法启动,因为用户没有设置TouchID");
                                 block(YZAuthIDStateTouchIDNotSet, error);
@@ -186,14 +186,14 @@
                         }
                             break;
                             //case :{
-                        case LAErrorTouchIDNotAvailable:{
+                        case LAErrorBiometryNotAvailable:{
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 NSLog(@"TouchID 无效");
                                 block(YZAuthIDStateTouchIDNotAvailable, error);
                             });
                         }
                             break;
-                        case LAErrorTouchIDLockout:{
+                        case LAErrorBiometryLockout:{
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 NSLog(@"TouchID 被锁定(连续多次验证TouchID失败,系统需要用户手动输入密码)");
                                 block(YZAuthIDStateTouchIDLockout, error);
